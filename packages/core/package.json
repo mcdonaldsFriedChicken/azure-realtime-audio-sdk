@@ -19,7 +19,8 @@
     "publish:beta": "npm publish --tag beta",
     "publish:release": "npm publish",
     "build": "rolldown -c rolldown.config.ts",
-    "lint": "oxlint"
+    "lint": "oxlint",
+    "gen:types": "npx @hey-api/openapi-ts"
   },
   "keywords": [],
   "author": "",
