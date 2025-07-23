@@ -12,6 +12,6 @@ export default antfu({
     semi: true,
   },
   rules: {
-    semi: ['error', 'always'],
+    'no-new': 'off',
   },
 });
