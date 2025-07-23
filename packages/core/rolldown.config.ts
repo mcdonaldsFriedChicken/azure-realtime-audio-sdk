@@ -2,8 +2,8 @@ import { defineConfig } from 'rolldown';
 import { dts } from 'rolldown-plugin-dts';
 
 const entries = {
-  index: './lib/index.ts'
-}
+  index: './lib/index.ts',
+};
 
 export default defineConfig([
   // ESM build
@@ -15,8 +15,8 @@ export default defineConfig([
       entryFileNames: '[name].mjs',
       chunkFileNames: '[name].mjs',
       sourcemap: true,
-      minify: true
-    }
+      minify: true,
+    },
   },
   // CJS build
   {
@@ -27,21 +27,21 @@ export default defineConfig([
       entryFileNames: '[name].cjs',
       chunkFileNames: '[name].cjs',
       sourcemap: true,
-      minify: true
-    }
+      minify: true,
+    },
   },
   // Types generation
   {
     input: entries,
     output: {
       dir: 'types',
-      format: 'esm'
+      format: 'esm',
     },
     plugins: [
       dts({
-        emitDtsOnly: true
-      })
-    ]
+        emitDtsOnly: true,
+      }),
+    ],
   },
   // UMD build
   {
@@ -51,7 +51,7 @@ export default defineConfig([
       format: 'umd',
       name: 'Jsonlee',
       sourcemap: true,
-      minify: true
-    }
-  }
+      minify: true,
+    },
+  },
 ]);

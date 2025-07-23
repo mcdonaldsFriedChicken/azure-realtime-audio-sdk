@@ -1,3 +1,9 @@
 {
   "extends": "@jsonlee/tsconfig/base.tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ESNext", "DOM"]
+  },
+  "include": [
+    "lib/**/*"
+  ]
 }

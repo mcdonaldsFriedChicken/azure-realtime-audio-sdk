@@ -1,32 +1,40 @@
 {
   "name": "@jsonlee/core",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
+  "author": "",
+  "license": "MIT",
+  "keywords": [],
   "main": "dist/index.js",
-  "types": "types/index.d.ts",
   "module": "dist/es/index.mjs",
-  "type": "module",
+  "types": "types/index.d.ts",
   "files": [
-    "dist",
-    "types",
     "!dist/**/*.map",
     "!types/**/*.map",
-    "README.md",
     "LICENSE",
-    "README.en.md"
+    "README.en.md",
+    "README.md",
+    "dist",
+    "types"
   ],
   "scripts": {
     "publish:beta": "npm publish --tag beta",
     "publish:release": "npm publish",
     "build": "rolldown -c rolldown.config.ts",
-    "lint": "oxlint",
-    "gen:types": "npx @hey-api/openapi-ts"
+    "oxlint": "oxlint",
+    "gen:types": "npx @hey-api/openapi-ts",
+    "gen:oxlint": "npx @oxlint/migrate eslint.config.mjs",
+    "lint:fix": "eslint --fix .",
+    "lint": "eslint ."
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
+  "dependencies": {
+    "easy-websocket-client": "^1.0.0",
+    "eventemitter3": "^5.0.1"
+  },
   "devDependencies": {
     "@jsonlee/tsconfig": "workspace:^",
+    "eslint": "^9.31.0",
     "oxlint": "^1.8.0",
     "rolldown": "1.0.0-beta.29",
     "rolldown-plugin-dts": "^0.14.1",
