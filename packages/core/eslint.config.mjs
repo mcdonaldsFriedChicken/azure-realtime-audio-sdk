@@ -7,6 +7,7 @@ export default antfu({
     indent: 2,
     quotes: 'single',
     endOfLine: 'lf',
+    bracketSpacing: true,
     trailingComma: 'all',
     semi: true,
   },

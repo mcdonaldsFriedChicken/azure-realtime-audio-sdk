@@ -105,7 +105,7 @@ export type RealtimeRealtimeRequestItemCreateCommand = RealtimeRealtimeRequestCo
   type: 'conversation.item.create';
 } & {
   type: 'conversation.item.create';
-  previous_item_id?: string;
+  previous_item_id?: string | undefined;
   item: RealtimeRealtimeRequestItem;
 };
 

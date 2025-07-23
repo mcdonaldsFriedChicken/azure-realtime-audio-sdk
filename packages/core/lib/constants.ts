@@ -13,3 +13,27 @@ export const DEFAULT_SESSION_CONFIG: RealtimeRealtimeRequestSessionUpdateCommand
     type: 'server_vad',
   },
 };
+
+export enum ModelStatusEnum {
+  /**
+   * The model is idle.
+   * 闲置中
+   */
+  IDLE = 'idle',
+  /**
+   * The model is listening to the user.
+   * 聆听中
+   */
+  LISTENING = 'listening',
+  /**
+   * The model is thinking.
+   * 思考中
+   */
+  THINKING = 'thinking',
+  /**
+   * The model is speaking.
+   * 回答中
+   */
+  SPEAKING = 'speaking',
+}
+export type ModelStatusType = ModelStatusEnum | `${ModelStatusEnum}`;
