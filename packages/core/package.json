@@ -16,7 +16,6 @@
     "README.en.md",
     "README.md",
     "dist",
-    "lib",
     "types"
   ],
   "scripts": {
