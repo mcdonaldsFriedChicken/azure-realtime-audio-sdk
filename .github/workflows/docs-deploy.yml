@@ -23,9 +23,14 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
       - name: Install dependencies
-        run: npm run ci:docs
+        run: |
+          if [ -f package-lock.json ]; then
+            pnpm ci
+          else
+            pnpm install
+          fi
       - name: Build website
-        run: npm run build:docs
+        run: pnpm run build:docs
 
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
