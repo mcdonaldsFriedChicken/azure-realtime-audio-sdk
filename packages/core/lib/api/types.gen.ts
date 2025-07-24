@@ -307,6 +307,7 @@ export type RealtimeRealtimeResponseAudioTranscriptDoneCommand = RealtimeRealtim
   item_id: string;
   output_index: number;
   content_index: number;
+  transcript: string;
 };
 
 export type RealtimeRealtimeResponseCancelledStatusDetails = RealtimeRealtimeResponseStatusDetails & {
