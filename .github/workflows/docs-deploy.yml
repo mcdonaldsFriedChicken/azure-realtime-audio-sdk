@@ -20,7 +20,8 @@ jobs:
         with:
           node-version: 20
           # cache: npm
-
+      - name: Install pnpm
+        run: npm install -g pnpm
       - name: Install dependencies
         run: npm run ci:docs
       - name: Build website
