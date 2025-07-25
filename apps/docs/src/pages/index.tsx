@@ -20,7 +20,7 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
+            快速开始 - 5分钟 ⏱️
           </Link>
         </div>
       </div>
@@ -32,11 +32,58 @@ export default function Home(): JSX.Element {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={siteConfig.title}
+      description={siteConfig.tagline}>
       <HomepageHeader />
       <main>
         <HomepageFeatures />
+        <div className={styles.gettingStarted}>
+          <div className="container">
+            <div className="row">
+              <div className="col col--8 col--offset-2">
+                <Heading as="h2" className={styles.gettingStartedTitle}>
+                  开始使用
+                </Heading>
+                <div className={styles.codeBlock}>
+                  <pre>
+                    <code>
+                      {`npm install @azure-realtime-audio/core
+
+import { AzureRealTimeAudio } from '@azure-realtime-audio/core';
+
+const client = new AzureRealTimeAudio({
+  hostName: 'your-resource.openai.azure.com',
+  apiVersion: '2024-10-01-preview',
+  deployment: 'gpt-4o-realtime-preview',
+  apiKey: 'your-api-key'
+});
+
+client.once('init', (session) => {
+  console.log('会话已建立:', session);
+});
+
+client.on('response.audio.delta', (audioData) => {
+  console.log('收到音频数据:', audioData.delta);
+});`}
+                    </code>
+                  </pre>
+                </div>
+                <div className={styles.gettingStartedLinks}>
+                  <Link
+                    className="button button--primary button--lg"
+                    to="/docs/getting-started/installation">
+                    安装指南
+                  </Link>
+                  <Link
+                    className="button button--secondary button--lg"
+                    to="/docs/api-reference/client">
+                    API 文档
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </main>
     </Layout>
   );

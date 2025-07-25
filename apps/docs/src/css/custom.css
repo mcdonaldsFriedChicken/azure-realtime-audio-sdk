@@ -6,25 +6,57 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #0078d4;
+  --ifm-color-primary-dark: #006cbd;
+  --ifm-color-primary-darker: #0066b2;
+  --ifm-color-primary-darkest: #005392;
+  --ifm-color-primary-light: #0084eb;
+  --ifm-color-primary-lighter: #008af6;
+  --ifm-color-primary-lightest: #1a9aff;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
+  --ifm-color-primary: #00b7ff;
+  --ifm-color-primary-dark: #00a5e6;
+  --ifm-color-primary-darker: #009cd9;
+  --ifm-color-primary-darkest: #0081b3;
+  --ifm-color-primary-light: #1abeff;
+  --ifm-color-primary-lighter: #26c1ff;
+  --ifm-color-primary-lightest: #4dccff;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Custom styles */
+.navbar {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.footer {
+  --ifm-footer-background-color: var(--ifm-color-emphasis-100);
+  --ifm-footer-color: var(--ifm-color-emphasis-800);
+  --ifm-footer-link-color: var(--ifm-color-emphasis-700);
+  --ifm-footer-title-color: var(--ifm-color-emphasis-900);
+}
+
+.hero {
+  --ifm-hero-text-color: var(--ifm-color-white);
+}
+
+.button {
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+code {
+  background-color: var(--ifm-color-emphasis-200);
+  border-radius: var(--ifm-code-border-radius);
+  font-size: var(--ifm-code-font-size);
+  padding: 0.2rem 0.4rem;
 }

@@ -1,56 +1,77 @@
-import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
-  description: ReactNode;
+  description: JSX.Element;
+  icon: string;
 };
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: '实时语音交互',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        支持流式音频输入输出，提供低延迟的对话体验。支持 PCM16、G.711 μ-law、G.711 A-law 等多种音频格式。
       </>
     ),
+    icon: '🎤',
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'WebSocket 通信',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        基于 WebSocket 的实时双向通信，支持浏览器和 Node.js 环境。智能的对话状态管理，自动处理连接维护。
       </>
     ),
+    icon: '🌐',
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: '工具调用支持',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        支持 Function Calling，可扩展 AI 能力。内置 Whisper 模型支持语音转录，完整的类型定义和文档。
       </>
     ),
+    icon: '🛠️',
+  },
+  {
+    title: 'TypeScript 原生支持',
+    description: (
+      <>
+        完整的 TypeScript 类型定义和 JSDoc 文档。智能提示和类型安全，减少运行时错误。
+      </>
+    ),
+    icon: '🎯',
+  },
+  {
+    title: '状态管理',
+    description: (
+      <>
+        智能的对话状态管理（空闲、聆听、思考、回答）。丰富的事件系统，方便集成和扩展。
+      </>
+    ),
+    icon: '🔄',
+  },
+  {
+    title: '跨平台支持',
+    description: (
+      <>
+        支持浏览器和 Node.js 环境。提供完整的示例代码和最佳实践指南。
+      </>
+    ),
+    icon: '🌍',
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Feature({title, description, icon}: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
       <div className="text--center padding-horiz--md">
+        <div className={styles.featureIcon}>{icon}</div>
         <Heading as="h3">{title}</Heading>
-        <p>{description as string}</p>
+        <p>{description}</p>
       </div>
     </div>
   );

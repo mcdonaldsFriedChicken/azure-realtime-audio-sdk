@@ -23,3 +23,13 @@ slorber:
     linkedin: sebastienlorber
     github: slorber
     newsletter: https://thisweekinreact.com
+
+jsonlee:
+  name: Json Lee
+  title: Azure Realtime Audio SDK 作者
+  url: https://github.com/JsonLee12138
+  image_url: https://github.com/JsonLee12138.png
+  page: true
+  socials:
+    github: JsonLee12138
+    discord: jsonlee

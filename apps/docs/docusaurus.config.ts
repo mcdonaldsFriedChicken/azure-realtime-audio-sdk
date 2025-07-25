@@ -1,39 +1,31 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
-
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+import type { Config } from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Azure Realtime Audio SDK',
+  tagline: '基于 Azure OpenAI Realtime API 的 TypeScript/JavaScript SDK，支持实时语音对话',
   favicon: 'img/favicon.ico',
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
+  // Future flags
   future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+    v4: true,
   },
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  url: 'https://jsonlee12138.github.io',
+  baseUrl: '/azure-realtime-audio-sdk/',
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
-
+  // GitHub pages deployment config
+  organizationName: 'JsonLee12138',
+  projectName: 'azure-realtime-audio-sdk',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
+  // 国际化配置
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: 'zh',
+    locales: ['zh', 'en'],
   },
 
   presets: [
@@ -42,10 +34,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          editUrl: 'https://github.com/JsonLee12138/azure-realtime-audio-sdk/tree/main/apps/docs/',
         },
         blog: {
           showReadingTime: true,
@@ -53,14 +42,7 @@ const config: Config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
+          editUrl: 'https://github.com/JsonLee12138/azure-realtime-audio-sdk/tree/main/apps/docs/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -70,77 +52,105 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
+    // 图片
     image: 'img/docusaurus-social-card.jpg',
+
+    // 导航栏配置
     navbar: {
-      title: 'My Site',
+      title: 'Azure Realtime Audio SDK',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'Azure Realtime Audio SDK Logo',
         src: 'img/logo.svg',
       },
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'docs', // 修正为实际 sidebar id
           position: 'left',
-          label: 'Tutorial',
+          label: '文档',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          type: 'doc',
+          docId: 'api-reference/client',
+          position: 'left',
+          label: 'API',
+        },
+        { to: '/blog', label: '博客', position: 'left' },
+        {
+          type: 'localeDropdown',
+          position: 'right',
+        },
+        {
+          href: 'https://github.com/JsonLee12138/azure-realtime-audio-sdk',
           label: 'GitHub',
           position: 'right',
         },
       ],
     },
+
+    // 页脚配置
     footer: {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: '文档',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: '快速开始',
+              to: '/docs/getting-started/quick-start',
+            },
+            {
+              label: 'API参考',
+              to: '/docs/api-reference/client',
             },
           ],
         },
         {
-          title: 'Community',
+          title: '社区',
           items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
             {
               label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              href: 'https://discord.gg/666U6JTCQY',
             },
             {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
+              label: 'QQ频道',
+              href: 'https://pd.qq.com/s/fjwy3eo20?b=9',
             },
           ],
         },
         {
-          title: 'More',
+          title: '更多',
           items: [
             {
-              label: 'Blog',
+              label: '博客',
               to: '/blog',
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/JsonLee12138/azure-realtime-audio-sdk',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Azure Realtime Audio SDK. Built with Docusaurus.`,
     },
+
+    // Algolia DocSearch 占位配置
+    // 请前往 https://docsearch.algolia.com/ 申请 appId、apiKey、indexName
+    algolia: {
+      appId: 'YOUR_APP_ID', // 替换为你的 appId
+      apiKey: 'YOUR_SEARCH_API_KEY', // 替换为你的 search-only apiKey
+      indexName: 'YOUR_INDEX_NAME', // 替换为你的索引名
+      contextualSearch: true,
+      searchParameters: {},
+      searchPagePath: 'search',
+    },
+
+    // 代码高亮主题
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+      additionalLanguages: ['bash', 'diff', 'json'],
     },
   } satisfies Preset.ThemeConfig,
 };
