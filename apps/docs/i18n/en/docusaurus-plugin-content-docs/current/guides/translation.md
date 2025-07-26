@@ -2,9 +2,9 @@
 sidebar_position: 3
 ---
 
-# 实时翻译示例
+# Real-time Translation Example
 
-本示例展示如何使用 Azure Realtime Audio SDK 实现语音实时翻译。
+This example demonstrates how to implement real-time voice translation using Azure Realtime Audio SDK.
 
 ```typescript
 const translator = new AzureRealTimeAudio({
@@ -13,19 +13,19 @@ const translator = new AzureRealTimeAudio({
   deployment: 'gpt-4o-realtime-preview',
   apiKey: process.env.AZURE_OPENAI_API_KEY!,
   sessionConfig: {
-    instructions: '请将用户的语音翻译成英文，只返回翻译结果。',
+    instructions: 'Please translate user speech to English, return only the translation.',
     voice: 'echo'
   }
 });
 
-// 实时显示翻译结果
+// Display translation results in real-time
 translator.on('response.text.delta', (data) => {
   updateTranslationDisplay(data.delta);
 });
 ```
 
-## 说明
+## Notes
 
-- 通过 `instructions` 指定翻译任务。
-- 监听 `response.text.delta` 事件获取实时翻译文本。
-- 可结合 UI 实现实时字幕或文本展示。 
+- Specify translation task through `instructions`.
+- Listen to the `response.text.delta` event to receive real-time translation text.
+- Can be integrated with UI for real-time subtitles or text display. 

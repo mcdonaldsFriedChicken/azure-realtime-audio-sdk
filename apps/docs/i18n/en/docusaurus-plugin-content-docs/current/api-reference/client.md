@@ -2,37 +2,36 @@
 sidebar_position: 1
 ---
 
-# AzureRealTimeAudio 客户端
+# AzureRealTimeAudio Client
 
-`AzureRealTimeAudio` 是 SDK 的核心类，提供了与 Azure OpenAI Realtime API 交互的完整功能。
+`AzureRealTimeAudio` is the core class of the SDK, providing complete functionality for interacting with Azure OpenAI Realtime API.
 
-## 构造函数
+## Constructor
 
 ### AzureRealTimeAudio
 
 ```typescript
 new AzureRealTimeAudio(options, websocketOptions?, WebSocketImpl?)
 ```
-创建一个新的 Azure Realtime Audio 客户端实例。
+Creates a new Azure Realtime Audio client instance.
 
-#### 参数
+#### Parameters
 
-| 参数 | 类型 | 必需 | 描述 |
-|------|------|------|------|
-| `options` | `AzureRealTimeOptions` | ✅ | 客户端配置选项 |
-| `websocketOptions` 
-| `WebSocketOptions` | ❌ | WebSocket 连接选项 |
-| `WebSocketImpl` | `WebSocketConstructor` | ❌ | WebSocket 实现（Node.js 环境必需） |
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `options` | `AzureRealTimeOptions` | ✅ | Client configuration options |
+| `websocketOptions` | `WebSocketOptions` | ❌ | WebSocket connection options |
+| `WebSocketImpl` | `WebSocketConstructor` | ❌ | WebSocket implementation (required for Node.js environment) |
 
 #### AzureRealTimeOptions
 
 ```typescript
 interface AzureRealTimeOptions {
-  hostName: string;           // Azure OpenAI 服务域名
-  apiVersion: string;         // API 版本
-  deployment: string;         // 模型部署名称
-  apiKey: string;            // API 密钥
-  sessionConfig?: SessionConfig; // 会话配置（可选）
+  hostName: string;           // Azure OpenAI service hostname
+  apiVersion: string;         // API version
+  deployment: string;         // Model deployment name
+  apiKey: string;            // API key
+  sessionConfig?: SessionConfig; // Session configuration (optional)
 }
 ```
 
@@ -52,25 +51,25 @@ interface SessionConfig {
 }
 ```
 
-## 实例属性
+## Instance Properties
 
 ### status
 
-获取或设置模型的当前状态。
+Get or set the current status of the model.
 
 ```typescript
 client.status: ModelStatusEnum
 ```
 
-可能的值：
-- `ModelStatusEnum.IDLE` - 模型空闲状态
-- `ModelStatusEnum.LISTENING` - 模型正在聆听用户输入
-- `ModelStatusEnum.THINKING` - 模型正在思考处理
-- `ModelStatusEnum.SPEAKING` - 模型正在回答输出
+Possible values:
+- `ModelStatusEnum.IDLE` - Model is in idle state
+- `ModelStatusEnum.LISTENING` - Model is listening to user input
+- `ModelStatusEnum.THINKING` - Model is processing
+- `ModelStatusEnum.SPEAKING` - Model is responding
 
 ### isInitialized
 
-检查客户端是否已完成初始化。
+Check if the client has completed initialization.
 
 ```typescript
 client.isInitialized: boolean
@@ -78,19 +77,19 @@ client.isInitialized: boolean
 
 ### state
 
-获取 WebSocket 连接的当前状态。
+Get the current state of the WebSocket connection.
 
 ```typescript
 client.state: WebSocketState
 ```
 
-## 实例方法
+## Instance Methods
 
-### 事件监听
+### Event Listening
 
 #### on(event, listener)
 
-注册事件监听器。
+Register an event listener.
 
 ```typescript
 client.on(event: string, listener: Function): void
@@ -98,7 +97,7 @@ client.on(event: string, listener: Function): void
 
 #### once(event, listener)
 
-注册一次性事件监听器。
+Register a one-time event listener.
 
 ```typescript
 client.once(event: string, listener: Function): void
@@ -106,7 +105,7 @@ client.once(event: string, listener: Function): void
 
 #### off(event, listener?)
 
-移除事件监听器。
+Remove an event listener.
 
 ```typescript
 client.off(event: string, listener?: Function): void
@@ -114,17 +113,17 @@ client.off(event: string, listener?: Function): void
 
 #### offAll()
 
-移除所有事件监听器。
+Remove all event listeners.
 
 ```typescript
 client.offAll(): void
 ```
 
-### 音频操作
+### Audio Operations
 
 #### appendAudio(base64Audio)
 
-添加音频数据到缓冲区。
+Add audio data to the buffer.
 
 ```typescript
 client.appendAudio(base64Audio: string): void
@@ -132,7 +131,7 @@ client.appendAudio(base64Audio: string): void
 
 #### commitAudio()
 
-提交音频缓冲区进行处理。
+Submit the audio buffer for processing.
 
 ```typescript
 client.commitAudio(): void
@@ -140,17 +139,17 @@ client.commitAudio(): void
 
 #### clearAudioBuffer()
 
-清空音频缓冲区。
+Clear the audio buffer.
 
 ```typescript
 client.clearAudioBuffer(): void
 ```
 
-### 对话管理
+### Conversation Management
 
 #### createConversationItem(item, previousItemId?)
 
-创建对话项。
+Create a conversation item.
 
 ```typescript
 client.createConversationItem(
@@ -161,7 +160,7 @@ client.createConversationItem(
 
 #### deleteItem(itemId)
 
-删除对话项。
+Delete a conversation item.
 
 ```typescript
 client.deleteItem(itemId: string): void
@@ -169,7 +168,7 @@ client.deleteItem(itemId: string): void
 
 #### truncateItem(itemId, contentIndex, audioEndMs)
 
-截断对话项。
+Truncate a conversation item.
 
 ```typescript
 client.truncateItem(
@@ -181,7 +180,7 @@ client.truncateItem(
 
 #### createResponse(responseConfig?)
 
-创建响应。
+Create a response.
 
 ```typescript
 client.createResponse(responseConfig?: ResponseConfig): void
@@ -189,25 +188,25 @@ client.createResponse(responseConfig?: ResponseConfig): void
 
 #### cancelResponse()
 
-取消当前响应。
+Cancel the current response.
 
 ```typescript
 client.cancelResponse(): void
 ```
 
-### 状态管理
+### Status Management
 
 #### setModelSpeakDone()
 
-标记模型完成说话。
+Mark the model as finished speaking.
 
 ```typescript
 client.setModelSpeakDone(): void
 ```
 
-## 使用示例
+## Usage Examples
 
-### 基础用法
+### Basic Usage
 
 ```typescript
 const client = new AzureRealTimeAudio({
@@ -218,15 +217,15 @@ const client = new AzureRealTimeAudio({
 });
 
 client.once('init', (session) => {
-  console.log('会话已建立:', session);
+  console.log('Session established:', session);
 });
 
 client.on('response.audio.delta', (audioData) => {
-  console.log('收到音频数据:', audioData.delta);
+  console.log('Received audio data:', audioData.delta);
 });
 ```
 
-### Node.js 环境
+### Node.js Environment
 
 ```typescript
 import WebSocket from 'ws';
@@ -238,12 +237,12 @@ const client = new AzureRealTimeAudio(
     deployment: 'gpt-4o-realtime-preview',
     apiKey: process.env.AZURE_OPENAI_API_KEY!
   },
-  {}, // WebSocket 选项
-  WebSocket // 传入 WebSocket 实现
+  {}, // WebSocket options
+  WebSocket // Pass WebSocket implementation
 );
 ```
 
-### 自定义配置
+### Custom Configuration
 
 ```typescript
 const client = new AzureRealTimeAudio({
@@ -253,7 +252,7 @@ const client = new AzureRealTimeAudio({
   apiKey: 'your-api-key',
   sessionConfig: {
     voice: 'shimmer',
-    instructions: '你是一个友好的AI助手，请用中文回答问题。',
+    instructions: 'You are a friendly AI assistant. Please answer questions in English.',
     input_audio_format: 'pcm16',
     output_audio_format: 'pcm16',
     turn_detection: {
@@ -262,5 +261,4 @@ const client = new AzureRealTimeAudio({
       silence_duration_ms: 800
     }
   }
-});
-``` 
+}); 

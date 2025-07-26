@@ -1,20 +1,20 @@
 ---
-sidbar_position: 1
+sidebar_position: 1
 ---
 
-# 开发环境配置
+# Development Environment Setup
 
-本页介绍如何在 Node.js 和浏览器环境下配置 Azure Realtime Audio SDK。
+This page explains how to configure Azure Realtime Audio SDK in Node.js and browser environments.
 
-## Node.js 环境
+## Node.js Environment
 
-在 Node.js 环境中，需要额外安装 WebSocket 实现：
+In Node.js environment, you need to install a WebSocket implementation:
 
 ```bash
 npm install ws
 ```
 
-并在创建客户端时传入 WebSocket 实现：
+And pass the WebSocket implementation when creating the client:
 
 ```typescript
 import WebSocket from 'ws';
@@ -27,30 +27,30 @@ const client = new AzureRealTimeAudio(
     deployment: 'gpt-4o-realtime-preview',
     apiKey: process.env.AZURE_OPENAI_API_KEY!
   },
-  {}, // WebSocket 选项
-  WebSocket // 传入 WebSocket 实现
+  {}, // WebSocket options
+  WebSocket // Pass WebSocket implementation
 );
 ```
 
-## 环境变量
+## Environment Variables
 
-推荐使用环境变量管理敏感信息：
+It's recommended to manage sensitive information using environment variables:
 
 ```bash
-# .env 文件
+# .env file
 AZURE_OPENAI_API_KEY=your-api-key
 AZURE_OPENAI_ENDPOINT=your-resource.openai.azure.com
 AZURE_OPENAI_DEPLOYMENT=gpt-4o-realtime-preview
 AZURE_OPENAI_API_VERSION=2024-10-01-preview
 ```
 
-## 浏览器环境
+## Browser Environment
 
-- 需在 HTTPS 环境下运行（本地开发可用 localhost）
-- 需用户授权麦克风权限
-- 推荐使用现代浏览器（Chrome、Firefox、Safari、Edge）
+- Must run in HTTPS environment (localhost is fine for local development)
+- Requires user authorization for microphone access
+- Recommended to use modern browsers (Chrome, Firefox, Safari, Edge)
 
-## 验证安装
+## Verify Installation
 
 ```typescript
 import { AzureRealTimeAudio } from '@azure-realtime-audio/core';
@@ -63,6 +63,6 @@ const client = new AzureRealTimeAudio({
 });
 
 client.once('init', (session) => {
-  console.log('会话已建立:', session);
+  console.log('Session established:', session);
 });
 ``` 

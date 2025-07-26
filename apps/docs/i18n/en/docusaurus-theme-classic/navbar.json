@@ -1,14 +1,25 @@
 {
-  "title": {
-    "message": "Azure Realtime Audio SDK",
-    "description": "The title in the navbar"
+  "title": "Azure Realtime Audio SDK",
+  "logo": {
+    "alt": "Azure Realtime Audio SDK Logo",
+    "src": "img/logo.svg"
   },
-  "item.label.文档": {
-    "message": "Docs",
-    "description": "Navbar item with label 文档"
-  },
-  "item.label.博客": {
-    "message": "Blog",
-    "description": "Navbar item with label 博客"
-  }
+  "items": [
+    {
+      "type": "doc",
+      "docId": "api-reference/client",
+      "position": "left",
+      "label": "Documentation"
+    },
+    {
+      "to": "/blog",
+      "label": "Blog",
+      "position": "left"
+    },
+    {
+      "href": "https://github.com/JsonLee12138/azure-realtime-audio-sdk",
+      "label": "GitHub",
+      "position": "right"
+    }
+  ]
 } 

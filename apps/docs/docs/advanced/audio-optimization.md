@@ -1,5 +1,5 @@
 ---
-sidbar_position: 2
+sidebar_position: 2
 ---
 
 # 音频质量优化

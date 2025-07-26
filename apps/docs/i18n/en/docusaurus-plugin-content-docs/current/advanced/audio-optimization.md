@@ -1,31 +1,31 @@
 ---
-sidbar_position: 2
+sidebar_position: 2
 ---
 
-# 音频质量优化
+# Audio Quality Optimization
 
-合理配置音频参数和前端录音设置，可以显著提升语音识别和合成的效果。
+Properly configuring audio parameters and frontend recording settings can significantly improve speech recognition and synthesis results.
 
-## 推荐参数
+## Recommended Parameters
 
 ```typescript
 const sessionConfig = {
   input_audio_format: 'pcm16',
   turn_detection: {
     type: 'server_vad',
-    threshold: 0.6, // 调整灵敏度
-    silence_duration_ms: 800 // 调整静音检测时间
+    threshold: 0.6, // Adjust sensitivity
+    silence_duration_ms: 800 // Adjust silence detection duration
   }
 };
 ```
 
-## 录音建议
+## Recording Recommendations
 
-- 使用 16kHz 采样率、单声道
-- 启用回声消除、噪声抑制
-- 合理分片（如每 100ms 发送一次数据）
+- Use 16kHz sample rate, mono channel
+- Enable echo cancellation and noise suppression
+- Appropriate chunking (e.g., send data every 100ms)
 
-## 示例：浏览器录音配置
+## Example: Browser Recording Configuration
 
 ```typescript
 const stream = await navigator.mediaDevices.getUserMedia({
@@ -36,4 +36,4 @@ const stream = await navigator.mediaDevices.getUserMedia({
     noiseSuppression: true
   }
 });
-``` 
+```

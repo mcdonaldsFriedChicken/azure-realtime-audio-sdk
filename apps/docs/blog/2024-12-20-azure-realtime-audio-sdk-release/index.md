@@ -9,7 +9,6 @@ tags: [azure, openai, realtime, audio, sdk, typescript, javascript]
 
 我们很高兴地宣布，**Azure Realtime Audio SDK** 正式发布！这是一个基于 Azure OpenAI Realtime API 的 TypeScript/JavaScript SDK，让开发者能够轻松构建强大的实时语音对话应用。
 
-<!--truncate-->
 
 ## 🚀 为什么选择 Azure Realtime Audio SDK？
 

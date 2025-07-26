@@ -1,12 +1,12 @@
 ---
-sidbar_position: 3
+sidebar_position: 3
 ---
 
-# 内存管理
+# Memory Management
 
-及时清理事件监听器和关闭连接，有助于防止内存泄漏，提升应用稳定性。
+Timely cleanup of event listeners and closing connections helps prevent memory leaks and improves application stability.
 
-## 事件监听清理
+## Event Listener Cleanup
 
 ```typescript
 const cleanup = () => {
@@ -14,18 +14,18 @@ const cleanup = () => {
   client.close();
 };
 
-// 页面卸载时清理
+// Clean up on page unload
 window.addEventListener('beforeunload', cleanup);
 ```
 
-## 资源释放建议
+## Resource Release Recommendations
 
-- 停止录音时关闭音频流
-- 关闭 WebSocket 连接
-- 移除所有事件监听器
-- 释放 AudioContext 等前端资源
+- Close audio stream when stopping recording
+- Close WebSocket connection
+- Remove all event listeners
+- Release frontend resources like AudioContext
 
-## 示例：完整清理
+## Example: Complete Cleanup
 
 ```typescript
 function cleanupAll() {
@@ -37,4 +37,4 @@ function cleanupAll() {
 }
 
 window.addEventListener('beforeunload', cleanupAll);
-``` 
+```

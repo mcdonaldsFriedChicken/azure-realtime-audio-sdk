@@ -1,47 +1,47 @@
 ---
-sidbar_position: 1
+sidebar_position: 1
 ---
 
-# 错误处理
+# Error Handling
 
-在使用 Azure Realtime Audio SDK 过程中，建议实现健壮的错误处理机制，提升用户体验和系统稳定性。
+When using Azure Realtime Audio SDK, it's recommended to implement robust error handling mechanisms to improve user experience and system stability.
 
-## 事件监听方式
+## Event Listening Approach
 
-SDK 提供了 `error` 事件用于捕获运行时错误：
+The SDK provides an `error` event for capturing runtime errors:
 
 ```typescript
 client.on('error', (error) => {
-  console.error('连接错误:', error);
-  // 实现重连逻辑
+  console.error('Connection error:', error);
+  // Implement reconnection logic
   setTimeout(() => {
-    // 重新创建客户端连接
+    // Recreate client connection
   }, 5000);
 });
 ```
 
-## 常见错误类型
+## Common Error Types
 
-- 连接错误（如网络断开、服务器不可达）
-- 认证失败（API Key 错误或权限不足）
-- 速率限制（请求过于频繁）
-- 音频权限问题（浏览器未授权麦克风）
+- Connection errors (e.g., network disconnection, server unreachable)
+- Authentication failures (incorrect API Key or insufficient permissions)
+- Rate limiting (too frequent requests)
+- Audio permission issues (browser microphone not authorized)
 
-## 错误恢复建议
+## Error Recovery Recommendations
 
-- 自动重连机制
-- 明确的错误提示和 UI 反馈
-- 记录错误日志，便于排查
-- 对于不可恢复的错误，建议引导用户刷新页面或重新登录
+- Automatic reconnection mechanism
+- Clear error messages and UI feedback
+- Error logging for troubleshooting
+- For unrecoverable errors, guide users to refresh the page or re-login
 
-## 示例：自动重连
+## Example: Auto Reconnection
 
 ```typescript
 client.on('error', (error) => {
   if (error.type === 'connection_error') {
-    // 断线重连
+    // Reconnect on disconnection
     setTimeout(() => {
-      // 重新初始化 client
+      // Reinitialize client
     }, 3000);
   }
 });

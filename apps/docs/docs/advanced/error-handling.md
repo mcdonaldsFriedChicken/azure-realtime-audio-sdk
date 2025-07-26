@@ -1,5 +1,5 @@
 ---
-sidbar_position: 1
+sidebar_position: 1
 ---
 
 # 错误处理

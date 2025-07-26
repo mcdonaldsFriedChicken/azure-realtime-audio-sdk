@@ -1,22 +1,9 @@
-import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
-
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-
-/**
- * Creating a sidebar enables you to:
- - create an ordered group of docs
- - render a sidebar for each doc of that group
- - provide next/previous navigation
- 
- The sidebars can be generated from the filesystem, or explicitly defined here.
- 
- Create as many sidebars as you want.
- */
-const sidebars: SidebarsConfig = {
+const sidebars = {
   docs: [
+    'intro',
     {
       type: 'category',
-      label: '入门指南',
+      label: 'Getting Started',
       items: [
         'getting-started/installation',
         'getting-started/quick-start',
@@ -24,7 +11,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'API参考',
+      label: 'API Reference',
       items: [
         'api-reference/client',
         'api-reference/events',
@@ -33,7 +20,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: '使用指南',
+      label: 'Guides',
       items: [
         'guides/voice-assistant',
         'guides/customer-service',
@@ -42,7 +29,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: '高级指南',
+      label: 'Advanced',
       items: [
         'advanced/error-handling',
         'advanced/audio-optimization',
@@ -51,7 +38,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: '开发',
+      label: 'Development',
       items: [
         'development/environment',
         'development/contributing',
@@ -60,4 +47,4 @@ const sidebars: SidebarsConfig = {
   ],
 };
 
-export default sidebars;
+module.exports = sidebars; 

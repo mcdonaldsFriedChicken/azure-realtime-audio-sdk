@@ -8,7 +8,7 @@ This example demonstrates how to build a fully functional voice assistant applic
 
 ## 🎯 Features
 
-We'll build an intelligent voice assistant with the following capabilities:
+We will build an intelligent voice assistant with the following features:
 
 - 🎤 **Speech Recognition** - Real-time recognition of user voice input
 - 🗣️ **Speech Synthesis** - Generate natural voice responses
@@ -85,7 +85,7 @@ We'll build an intelligent voice assistant with the following capabilities:
                 <div class="conversation-content" id="conversationContent">
                     <div class="welcome-message">
                         <i class="fas fa-robot"></i>
-                        <p>Hello! I'm your intelligent voice assistant. Click the "Start Conversation" button to begin chatting with me.</p>
+                        <p>Hello! I'm your intelligent voice assistant. Click the "Start Conversation" button to begin chatting.</p>
                     </div>
                 </div>
             </div>
@@ -136,7 +136,449 @@ We'll build an intelligent voice assistant with the following capabilities:
 
 ### CSS Styles
 
-[The CSS code is identical to the Chinese version, so I'll use the same styles]
+```css
+/* style.css */
+:root {
+  --primary-color: #4285f4;
+  --success-color: #34a853;
+  --warning-color: #fbbc04;
+  --error-color: #ea4335;
+  --background-color: #f8f9fa;
+  --card-background: #ffffff;
+  --text-color: #202124;
+  --text-secondary: #5f6368;
+  --border-color: #dadce0;
+  --shadow: 0 2px 10px rgba(0,0,0,0.1);
+  --border-radius: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  margin-bottom: 30px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo i {
+  color: var(--primary-color);
+  font-size: 24px;
+}
+
+.logo h1 {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-color); 
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--card-background);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--success-color);
+  animation: pulse 2s infinite;
+}
+
+.status-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+/* Main Interface Styles */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Voice Visualizer */
+.voice-visualizer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  background: var(--card-background);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+
+.wave-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.wave {
+  width: 4px;
+  height: 20px;
+  background: var(--primary-color);
+  border-radius: 2px;
+  animation: wave 1.5s ease-in-out infinite;
+}
+
+.wave:nth-child(2) { animation-delay: 0.1s; }
+.wave:nth-child(3) { animation-delay: 0.2s; }
+.wave:nth-child(4) { animation-delay: 0.3s; }
+.wave:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes wave {
+  0%, 100% { height: 20px; }
+  50% { height: 60px; }
+}
+
+.voice-visualizer.active .wave {
+  animation-duration: 0.8s;
+}
+
+.voice-visualizer.listening {
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+}
+
+.voice-visualizer.thinking {
+  background: linear-gradient(135deg, #fff3e0, #ffcc80);
+}
+
+.voice-visualizer.speaking {
+  background: linear-gradient(135deg, #e8f5e8, #a5d6a7);
+}
+
+/* Control Buttons */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+} 
+
+.controls button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px;
+  border: none;
+  border-radius: var(--border-radius);
+  background: var(--card-background);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow);
+  min-width: 120px;
+}
+
+.controls button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.record-btn {
+  background: var(--primary-color) !important;
+  color: white !important;
+}
+
+.record-btn.recording {
+  background: var(--error-color) !important;
+  animation: pulse-red 1s infinite;
+}
+
+@keyframes pulse-red {
+  0% { box-shadow: 0 0 0 0 rgba(234, 67, 53, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(234, 67, 53, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(234, 67, 53, 0); }
+}
+
+.stop-btn {
+  background: var(--warning-color) !important;
+  color: white !important;
+}
+
+.clear-btn {
+  background: var(--error-color) !important;
+  color: white !important;
+}
+
+/* Conversation Panel */
+.conversation-panel {
+  background: var(--card-background);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.conversation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #f8f9fa;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.conversation-header h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  color: var(--text-color);
+}
+
+.conversation-stats {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.conversation-content {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.welcome-message {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  background: #f0f7ff;
+  border-radius: 8px;
+  color: var(--text-secondary);
+}
+
+.welcome-message i {
+  color: var(--primary-color);
+  font-size: 24px;
+}
+
+.message {
+  display: flex;
+  margin-bottom: 16px;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message.user {
+  justify-content: flex-end;
+}
+
+.message.assistant {
+  justify-content: flex-start;
+}
+
+.message-content {
+  max-width: 70%;
+  padding: 12px 16px;
+  border-radius: 18px;
+  position: relative;
+}
+
+.message.user .message-content {
+  background: var(--primary-color);
+  color: white;
+}
+
+.message.assistant .message-content {
+  background: #f1f3f4;
+  color: var(--text-color);
+}
+
+.message-time {
+  font-size: 11px;
+  opacity: 0.7;
+  margin-top: 4px;
+}
+
+/* Settings Panel */
+.settings-panel {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 400px;
+  height: 100vh;
+  background: var(--card-background);
+  box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+  transition: right 0.3s ease;
+  z-index: 1000;
+}
+
+.settings-panel.open {
+  right: 0;
+}
+
+.settings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #f8f9fa;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.settings-content {
+  padding: 20px;
+}
+
+.setting-group {
+  margin-bottom: 24px;
+}
+
+.setting-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.setting-group select,
+.setting-group input,
+.setting-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.setting-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.settings-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(66, 133, 244, 0.4);
+  transition: all 0.3s ease;
+}
+
+.settings-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+  
+  .controls {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .controls button {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .settings-panel {
+    width: 100%;
+    right: -100%;
+  }
+  
+  .conversation-content {
+    max-height: 300px;
+  }
+}
+
+/* Scrollbar Styles */
+.conversation-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.conversation-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.conversation-content::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.conversation-content::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+```
 
 ### JavaScript Implementation
 
@@ -212,7 +654,9 @@ class VoiceAssistant {
     // Initialization complete
     this.client.once('init', (session) => {
       console.log('🎉 Voice assistant ready:', session);
-      this.updateStatus('connected', 'Connected', 'success');
+      this.updateStatus('connected', 'Conversation complete', 'success');
+      this.voiceVisualizer.className = 'voice-visualizer';
+      this.isPlaying = false;
     });
 
     // User starts speaking
@@ -274,199 +718,21 @@ class VoiceAssistant {
     });
   }
 
-  private setupEventListeners() {
-    // Record button
-    this.recordBtn.addEventListener('click', () => {
-      if (!this.isRecording) {
-        this.startRecording();
-      } else {
-        this.stopRecording();
-      }
-    });
-
-    // Stop button
-    this.stopBtn.addEventListener('click', () => {
-      this.stopRecording();
-      this.client.cancelResponse();
-    });
-
-    // Clear button
-    this.clearBtn.addEventListener('click', () => {
-      this.clearConversation();
-    });
-
-    // Settings button
-    this.settingsBtn.addEventListener('click', () => {
-      this.settingsPanel.classList.toggle('open');
-    });
-
-    // Close settings
-    document.getElementById('closeSettings')?.addEventListener('click', () => {
-      this.settingsPanel.classList.remove('open');
-    });
-
-    // Settings listeners
-    this.setupSettingsListeners();
-
-    // Keyboard shortcuts
-    document.addEventListener('keydown', (e) => {
-      if (e.code === 'Space' && !e.target?.tagName.match(/INPUT|TEXTAREA/)) {
-        e.preventDefault();
-        if (!this.isRecording) {
-          this.startRecording();
-        }
-      }
-    });
-
-    document.addEventListener('keyup', (e) => {
-      if (e.code === 'Space' && this.isRecording) {
-        e.preventDefault();
-        this.stopRecording();
-      }
-    });
-  }
-
-  private setupSettingsListeners() {
-    const voiceSelect = document.getElementById('voiceSelect') as HTMLSelectElement;
-    const temperatureSlider = document.getElementById('temperatureSlider') as HTMLInputElement;
-    const temperatureValue = document.getElementById('temperatureValue')!;
-    const instructionsText = document.getElementById('instructionsText') as HTMLTextAreaElement;
-
-    // Voice selection
-    voiceSelect.addEventListener('change', () => {
-      // Apply new settings on next session
-      this.updateSessionConfig();
-    });
-
-    // Temperature setting
-    temperatureSlider.addEventListener('input', () => {
-      temperatureValue.textContent = temperatureSlider.value;
-      this.updateSessionConfig();
-    });
-
-    // Instructions setting
-    instructionsText.addEventListener('blur', () => {
-      this.updateSessionConfig();
-    });
-  }
-
-  private updateSessionConfig() {
-    const voiceSelect = document.getElementById('voiceSelect') as HTMLSelectElement;
-    const temperatureSlider = document.getElementById('temperatureSlider') as HTMLInputElement;
-    const instructionsText = document.getElementById('instructionsText') as HTMLTextAreaElement;
-
-    // Here you can update session configuration, but requires client reinitialization
-    console.log('Settings updated:', {
-      voice: voiceSelect.value,
-      temperature: parseFloat(temperatureSlider.value),
-      instructions: instructionsText.value
-    });
-  }
-
-  private async startRecording() {
-    try {
-      // Request microphone permission
-      const stream = await navigator.mediaDevices.getUserMedia({
-        audio: {
-          sampleRate: 16000,
-          channelCount: 1,
-          echoCancellation: true,
-          noiseSuppression: true,
-          autoGainControl: true
-        }
-      });
-
-      // Create MediaRecorder
-      this.mediaRecorder = new MediaRecorder(stream, {
-        mimeType: 'audio/webm;codecs=pcm'
-      });
-
-      // Handle audio data
-      this.mediaRecorder.ondataavailable = (event) => {
-        if (event.data.size > 0) {
-          this.processAudioData(event.data);
-        }
-      };
-
-      // Start recording
-      this.mediaRecorder.start(100); // Send data every 100ms
-      this.isRecording = true;
-
-      // Update UI
-      this.recordBtn.innerHTML = '<i class="fas fa-stop"></i><span>Stop Recording</span>';
-      this.recordBtn.classList.add('recording');
-      this.stopBtn.disabled = false;
-      this.updateStatus('recording', 'Recording...', 'error');
-
-      // Add user message placeholder
-      this.addMessage('user', '(Speaking...)');
-
-    } catch (error) {
-      console.error('❌ Cannot access microphone:', error);
-      this.updateStatus('error', 'Microphone access failed', 'error');
-      alert('Cannot access microphone. Please check permission settings.');
-    }
-  }
-
-  private stopRecording() {
-    if (this.mediaRecorder && this.isRecording) {
-      this.mediaRecorder.stop();
-      this.mediaRecorder.stream.getTracks().forEach(track => track.stop());
-      this.client.commitAudio();
-      this.isRecording = false;
-
-      // Update UI
-      this.recordBtn.innerHTML = '<i class="fas fa-microphone"></i><span>Start Conversation</span>';
-      this.recordBtn.classList.remove('recording');
-      this.stopBtn.disabled = true;
-      this.updateStatus('processing', 'Processing...', 'warning');
-
-      // Update last user message
-      const lastMessage = this.conversationContent.lastElementChild;
-      if (lastMessage?.classList.contains('user')) {
-        const content = lastMessage.querySelector('.message-content');
-        if (content?.textContent === '(Speaking...)') {
-          content.textContent = '(Voice input)';
-        }
-      }
-    }
-  }
-
-  private processAudioData(audioBlob: Blob) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      const result = reader.result as string;
-      const base64Audio = result.split(',')[1];
-      this.client.appendAudio(base64Audio);
+  private updateStatus(type: string, message: string, colorType: string) {
+    const statusDot = this.statusIndicator.querySelector('.status-dot') as HTMLElement;
+    const statusText = this.statusIndicator.querySelector('.status-text') as HTMLElement;
+    
+    statusText.textContent = message;
+    
+    // Update status dot color
+    const colors = {
+      'success': '#34a853',
+      'primary': '#4285f4',
+      'warning': '#fbbc04',
+      'error': '#ea4335'
     };
-    reader.readAsDataURL(audioBlob);
-  }
-
-  private async playAudioChunk(base64Audio: string) {
-    if (!this.audioContext) {
-      this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-    }
-
-    try {
-      // Decode base64 audio
-      const audioData = atob(base64Audio);
-      const arrayBuffer = new ArrayBuffer(audioData.length);
-      const view = new Uint8Array(arrayBuffer);
-      
-      for (let i = 0; i < audioData.length; i++) {
-        view[i] = audioData.charCodeAt(i);
-      }
-
-      // Decode and play audio
-      const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
-      const source = this.audioContext.createBufferSource();
-      source.buffer = audioBuffer;
-      source.connect(this.audioContext.destination);
-      source.start();
-
-    } catch (error) {
-      console.error('❌ Audio playback failed:', error);
-    }
+    
+    statusDot.style.backgroundColor = colors[colorType] || colors.success;
   }
 
   private addMessage(role: 'user' | 'assistant', content: string): HTMLElement {
@@ -511,23 +777,6 @@ class VoiceAssistant {
     this.conversationContent.scrollTop = this.conversationContent.scrollHeight;
   }
 
-  private updateStatus(type: string, message: string, colorType: string) {
-    const statusDot = this.statusIndicator.querySelector('.status-dot') as HTMLElement;
-    const statusText = this.statusIndicator.querySelector('.status-text') as HTMLElement;
-    
-    statusText.textContent = message;
-    
-    // Update status dot color
-    const colors = {
-      'success': '#34a853',
-      'primary': '#4285f4',
-      'warning': '#fbbc04',
-      'error': '#ea4335'
-    };
-    
-    statusDot.style.backgroundColor = colors[colorType] || colors.success;
-  }
-
   private updateConversationCount() {
     this.conversationCountEl.textContent = `${this.conversationCount} conversations`;
   }
@@ -548,16 +797,15 @@ class VoiceAssistant {
     
     switch (error.type) {
       case 'connection_error':
-        errorMessage = 'Network connection error. Please check your network settings.';
+        errorMessage = 'Network connection error, please check your network settings';
         break;
       case 'authentication_error':
-        errorMessage = 'Authentication failed. Please check your API key.';
+        errorMessage = 'Authentication failed, please check your API key';
         break;
       case 'rate_limit_error':
-        errorMessage = 'Request rate too high. Please try again later.';
+        errorMessage = 'Request rate too high, please try again later';
         break;
     }
-
     // Display error message
     const errorDiv = document.createElement('div');
     errorDiv.className = 'message assistant';
@@ -660,7 +908,7 @@ Voice visualizer provides intuitive visual feedback:
 
 Complete conversation recording functionality:
 
-- **Message Classification** - Distinguish user and AI messages
+- **Message Classification** - Distinguish between user and AI messages
 - **Timestamps** - Display message time
 - **Auto-scroll** - Automatically scroll to latest message
 - **Clear Function** - One-click conversation history clearing
@@ -700,7 +948,7 @@ npm run build
 
 ### 3. HTTPS Requirements
 
-:::warning Important Reminder
+:::warning Important Note
 Voice functionality requires HTTPS environment to work properly. In production, ensure:
 
 1. Configure SSL certificate

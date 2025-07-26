@@ -5,7 +5,7 @@ import { themes as prismThemes } from 'prism-react-renderer';
 const config: Config = {
   title: 'Azure Realtime Audio SDK',
   tagline: '基于 Azure OpenAI Realtime API 的 TypeScript/JavaScript SDK，支持实时语音对话',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/logo.svg',
 
   // Future flags
   future: {
@@ -51,6 +51,10 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    // 已移除本地搜索插件
+  ],
+
   themeConfig: {
     // 图片
     image: 'img/docusaurus-social-card.jpg',
@@ -64,16 +68,10 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'docs', // 修正为实际 sidebar id
-          position: 'left',
-          label: '文档',
-        },
-        {
           type: 'doc',
           docId: 'api-reference/client',
           position: 'left',
-          label: 'API',
+          label: '文档',
         },
         { to: '/blog', label: '博客', position: 'left' },
         {
@@ -132,19 +130,19 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Azure Realtime Audio SDK. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Azure Realtime Audio SDK. `,
     },
 
     // Algolia DocSearch 占位配置
     // 请前往 https://docsearch.algolia.com/ 申请 appId、apiKey、indexName
-    algolia: {
-      appId: 'YOUR_APP_ID', // 替换为你的 appId
-      apiKey: 'YOUR_SEARCH_API_KEY', // 替换为你的 search-only apiKey
-      indexName: 'YOUR_INDEX_NAME', // 替换为你的索引名
-      contextualSearch: true,
-      searchParameters: {},
-      searchPagePath: 'search',
-    },
+    // algolia: {
+    //   appId: 'YOUR_APP_ID', // 替换为你的 appId
+    //   apiKey: 'YOUR_SEARCH_API_KEY', // 替换为你的 search-only apiKey
+    //   indexName: 'YOUR_INDEX_NAME', // 替换为你的索引名
+    //   contextualSearch: true,
+    //   searchParameters: {},
+    //   searchPagePath: 'search',
+    // },
 
     // 代码高亮主题
     prism: {

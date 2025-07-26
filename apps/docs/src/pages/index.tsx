@@ -4,6 +4,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Heading from '@theme/Heading';
+import CodeBlock from '@theme/CodeBlock';
 
 import styles from './index.module.css';
 
@@ -19,7 +20,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/intro">
+            to="/docs/getting-started/quick-start">
             快速开始 - 5分钟 ⏱️
           </Link>
         </div>
@@ -28,7 +29,7 @@ function HomepageHeader() {
   );
 }
 
-export default function Home(): JSX.Element {
+export default function Home(): React.ReactElement {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
@@ -44,10 +45,8 @@ export default function Home(): JSX.Element {
                 <Heading as="h2" className={styles.gettingStartedTitle}>
                   开始使用
                 </Heading>
-                <div className={styles.codeBlock}>
-                  <pre>
-                    <code>
-                      {`npm install @azure-realtime-audio/core
+                  <CodeBlock language="ts">
+{`npm install @azure-realtime-audio/core
 
 import { AzureRealTimeAudio } from '@azure-realtime-audio/core';
 
@@ -65,9 +64,7 @@ client.once('init', (session) => {
 client.on('response.audio.delta', (audioData) => {
   console.log('收到音频数据:', audioData.delta);
 });`}
-                    </code>
-                  </pre>
-                </div>
+                  </CodeBlock>
                 <div className={styles.gettingStartedLinks}>
                   <Link
                     className="button button--primary button--lg"
