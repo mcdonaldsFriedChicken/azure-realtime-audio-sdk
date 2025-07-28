@@ -1,55 +1,87 @@
+import React from 'react';
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
+import Translate from '@docusaurus/Translate';
 import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
-  description: JSX.Element;
+  description: React.ReactElement;
   icon: string;
 };
 
 const FeatureList: FeatureItem[] = [
   {
-    title: '实时语音交互',
+    title: (
+      <Translate id="homepage.features.feature1.title">
+        Real-time Voice Interaction
+      </Translate>
+    ),
     description: (
       <>
-        支持流式音频输入输出，提供低延迟的对话体验。支持 PCM16、G.711 μ-law、G.711 A-law 等多种音频格式。
+        <Translate id="homepage.features.feature1.description">
+          Supports streaming audio input/output, providing low-latency conversation experience. Supports multiple audio formats including PCM16, G.711 μ-law, G.711 A-law.
+        </Translate>
       </>
     ),
     icon: '🎤',
   },
   {
-    title: 'WebSocket 通信',
+    title: (
+      <Translate id="homepage.features.feature2.title">
+        WebSocket Communication
+      </Translate>
+    ),
     description: (
       <>
-        基于 WebSocket 的实时双向通信，支持浏览器和 Node.js 环境。智能的对话状态管理，自动处理连接维护。
+        <Translate id="homepage.features.feature2.description">
+          Real-time bidirectional communication based on WebSocket, supporting browser and Node.js environments. Intelligent conversation state management with automatic connection maintenance.
+        </Translate>
       </>
     ),
     icon: '🌐',
   },
   {
-    title: '工具调用支持',
+    title: (
+      <Translate id="homepage.features.feature3.title">
+        Tool Calling Support
+      </Translate>
+    ),
     description: (
       <>
-        支持 Function Calling，可扩展 AI 能力。内置 Whisper 模型支持语音转录，完整的类型定义和文档。
+        <Translate id="homepage.features.feature3.description">
+          Supports Function Calling to extend AI capabilities. Built-in Whisper model for speech transcription with complete type definitions and documentation.
+        </Translate>
       </>
     ),
     icon: '🛠️',
   },
   {
-    title: 'TypeScript 原生支持',
+    title: (
+      <Translate id="homepage.features.feature4.title">
+        TypeScript Native Support
+      </Translate>
+    ),
     description: (
       <>
-        完整的 TypeScript 类型定义和 JSDoc 文档。智能提示和类型安全，减少运行时错误。
+        <Translate id="homepage.features.feature4.description">
+          Complete TypeScript type definitions and JSDoc documentation. Intelligent suggestions and type safety, reducing runtime errors.
+        </Translate>
       </>
     ),
     icon: '🎯',
   },
   {
-    title: '跨平台支持',
+    title: (
+      <Translate id="homepage.features.feature5.title">
+        Cross-platform Support
+      </Translate>
+    ),
     description: (
       <>
-        支持浏览器和 Node.js 环境。提供完整的示例代码和最佳实践指南。
+        <Translate id="homepage.features.feature5.description">
+          Supports browser and Node.js environments. Provides complete example code and best practice guides.
+        </Translate>
       </>
     ),
     icon: '🌍',
@@ -68,13 +100,13 @@ function Feature({title, description, icon}: FeatureItem) {
   );
 }
 
-export default function HomepageFeatures(): JSX.Element {
+export default function HomepageFeatures(): React.ReactElement {
   return (
     <section className={styles.features}>
       <div className="container">
         <div className="row">
           {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
+            <Feature key={idx} title={props.title} description={props.description} icon={props.icon} />
           ))}
         </div>
       </div>

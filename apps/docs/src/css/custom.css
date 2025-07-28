@@ -62,3 +62,23 @@ code {
   font-size: var(--ifm-code-font-size);
   padding: 0.2rem 0.4rem;
 }
+
+/* 减少标题和面包屑之间的间距 */
+.theme-doc-markdown header + * {
+  margin-top: 0 !important;
+}
+
+.theme-doc-markdown h1:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* 调整面包屑导航的下边距 */
+.theme-doc-breadcrumbs {
+  margin-bottom: 0.5rem;
+}
+
+/* 调整标题的上边距 */
+.theme-doc-markdown > header {
+  margin-bottom: 1rem;
+}

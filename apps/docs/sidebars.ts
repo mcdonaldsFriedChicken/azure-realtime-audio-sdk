@@ -14,49 +14,13 @@ import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
  */
 const sidebars: SidebarsConfig = {
   docs: [
-    {
-      type: 'category',
-      label: '入门指南',
-      items: [
-        'getting-started/installation',
-        'getting-started/quick-start',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'API参考',
-      items: [
-        'api-reference/client',
-        'api-reference/events',
-        'api-reference/enums',
-      ],
-    },
-    {
-      type: 'category',
-      label: '使用指南',
-      items: [
-        'guides/voice-assistant',
-        'guides/customer-service',
-        'guides/translation',
-      ],
-    },
-    {
-      type: 'category',
-      label: '高级指南',
-      items: [
-        'advanced/error-handling',
-        'advanced/audio-optimization',
-        'advanced/memory-management',
-      ],
-    },
-    {
-      type: 'category',
-      label: '开发',
-      items: [
-        'development/environment',
-        'development/contributing',
-      ],
-    },
+    'intro',
+    'getting-started',
+    'api-reference',
+    'examples',
+    'guides',
+    'advanced',
+    'development',
   ],
 };
 

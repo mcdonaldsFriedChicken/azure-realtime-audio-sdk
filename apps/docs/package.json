@@ -19,7 +19,13 @@
     "ci": "npm run typecheck",
     "oxlint": "oxlint",
     "lint:fix": "eslint --fix .",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "sync-translations": "./scripts/sync-translations.sh",
+    "check-translations": "node scripts/check-translations.js",
+    "start:en": "docusaurus start --locale en",
+    "start:zh": "docusaurus start --locale zh --port 3001",
+    "build:en": "docusaurus build --locale en",
+    "build:zh": "docusaurus build --locale zh"
   },
   "dependencies": {
     "@docusaurus/core": "3.8.1",

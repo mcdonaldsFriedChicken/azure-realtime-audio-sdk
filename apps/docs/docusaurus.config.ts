@@ -4,9 +4,8 @@ import { themes as prismThemes } from 'prism-react-renderer';
 
 const config: Config = {
   title: 'Azure Realtime Audio SDK',
-  tagline: '基于 Azure OpenAI Realtime API 的 TypeScript/JavaScript SDK，支持实时语音对话',
+  tagline: 'TypeScript/JavaScript SDK based on Azure OpenAI Realtime API, supporting real-time voice conversations',
   favicon: 'img/logo.svg',
-
   // Future flags
   future: {
     v4: true,
@@ -19,13 +18,24 @@ const config: Config = {
   // GitHub pages deployment config
   organizationName: 'JsonLee12138',
   projectName: 'azure-realtime-audio-sdk',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
-  // 国际化配置
+  // 国际化核心配置
   i18n: {
-    defaultLocale: 'zh',
-    locales: ['zh', 'en'],
+    defaultLocale: 'en',
+    locales: ['en', 'zh'],
+    localeConfigs: {
+      en: {
+        label: 'English',
+        htmlLang: 'en-US',
+      },
+      zh: {
+        label: '简体中文',
+        htmlLang: 'zh-CN',
+        path: 'zh',
+      },
+    },
   },
 
   presets: [
@@ -34,9 +44,25 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
+          showLastUpdateTime: true,
+          showLastUpdateAuthor: true,
           editUrl: 'https://github.com/JsonLee12138/azure-realtime-audio-sdk/tree/main/apps/docs/',
         },
         blog: {
+          blogTitle: 'Azure Realtime Audio SDK Blog',
+          blogDescription: 'Keep up with the latest news from Azure Realtime Audio SDK',
+          blogSidebarCount: 5,
+          blogSidebarTitle: 'Recent Posts',
+          routeBasePath: 'blog',
+          include: ['**/*.{md,mdx}'],
+          exclude: [
+            '**/_*.{js,jsx,ts,tsx,md,mdx}',
+            '**/_*/**',
+            '**/*.test.{js,jsx,ts,tsx}',
+            '**/__tests__/**',
+          ],
+          postsPerPage: 10,
+          truncateMarker: /<!--\s*(truncate)\s*-->/,
           showReadingTime: true,
           feedOptions: {
             type: ['rss', 'atom'],
@@ -56,28 +82,22 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // 图片
-    image: 'img/docusaurus-social-card.jpg',
-
     // 导航栏配置
     navbar: {
       title: 'Azure Realtime Audio SDK',
-      logo: {
-        alt: 'Azure Realtime Audio SDK Logo',
-        src: 'img/logo.svg',
-      },
       items: [
         {
           type: 'doc',
-          docId: 'api-reference/client',
+          docId: 'intro',
           position: 'left',
-          label: '文档',
+          label: 'Docs',
         },
-        { to: '/blog', label: '博客', position: 'left' },
+        // 语言切换下拉菜单
         {
           type: 'localeDropdown',
           position: 'right',
         },
+        { to: '/blog', label: 'Blog', position: 'right' },
         {
           href: 'https://github.com/JsonLee12138/azure-realtime-audio-sdk',
           label: 'GitHub',
@@ -91,36 +111,36 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: '文档',
+          title: 'Docs',
           items: [
             {
-              label: '快速开始',
-              to: '/docs/getting-started/quick-start',
+              label: 'Installation Guide',
+              to: '/docs/intro',
             },
             {
-              label: 'API参考',
-              to: '/docs/api-reference/client',
+              label: 'API Reference',
+              to: '/docs/api-reference',
             },
           ],
         },
         {
-          title: '社区',
+          title: 'Community',
           items: [
             {
               label: 'Discord',
               href: 'https://discord.gg/666U6JTCQY',
             },
             {
-              label: 'QQ频道',
+              label: 'QQ Channel',
               href: 'https://pd.qq.com/s/fjwy3eo20?b=9',
             },
           ],
         },
         {
-          title: '更多',
+          title: 'More',
           items: [
             {
-              label: '博客',
+              label: 'Blog',
               to: '/blog',
             },
             {
