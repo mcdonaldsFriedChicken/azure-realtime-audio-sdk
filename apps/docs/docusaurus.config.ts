@@ -2,6 +2,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 import type { Config } from '@docusaurus/types';
 import { themes as prismThemes } from 'prism-react-renderer';
 
+// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+
 const config: Config = {
   title: 'Azure Realtime Audio SDK',
   tagline: 'TypeScript/JavaScript SDK based on Azure OpenAI Realtime API, supporting real-time voice conversations',
@@ -14,6 +16,14 @@ const config: Config = {
   // Set the production url of your site here
   url: 'https://jsonlee12138.github.io',
   baseUrl: '/azure-realtime-audio-sdk/',
+  // Set the /<baseUrl>/ pathname under which your site is served
+  // For GitHub pages deployment, it is often '/<projectName>/'
+  baseUrl: '/azure-realtime-audio-sdk/',
+
+  // GitHub pages deployment config.
+  // If you aren't using GitHub pages, you don't need these.
+  organizationName: 'JsonLee12138', // Usually your GitHub org/user name.
+  projectName: 'azure-realtime-audio-sdk', // Usually your repo name.
 
   // GitHub pages deployment config
   organizationName: 'JsonLee12138',
@@ -92,7 +102,6 @@ const config: Config = {
           position: 'left',
           label: 'Docs',
         },
-        // 语言切换下拉菜单
         {
           type: 'localeDropdown',
           position: 'right',

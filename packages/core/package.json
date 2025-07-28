@@ -1,13 +1,16 @@
 {
   "name": "azure-realtime-audio-sdk",
   "type": "module",
-  "version": "1.0.0",
+  "version": "0.0.1-beta.2",
   "description": "",
   "author": "",
   "license": "MIT",
   "keywords": [],
-  "main": "dist/index.js",
+  "main": "dist/cjs/index.cjs",
   "module": "dist/es/index.mjs",
+  "unpkg": "dist/umd/index.js",
+  "jsdelivr": "dist/umd/index.js",
+  "browser": "dist/umd/index.js",
   "types": "types/index.d.ts",
   "files": [
     "!dist/**/*.map",

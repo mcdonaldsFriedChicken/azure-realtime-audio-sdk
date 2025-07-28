@@ -1,41 +1,16 @@
 import type { WebSocketClientOptions } from 'easy-websocket-client';
-import type { RealtimeRealtimeRequestCommandType, RealtimeRealtimeRequestItem, RealtimeRealtimeRequestResponseCreateCommand, RealtimeRealtimeRequestSessionUpdateCommand, RealtimeRealtimeResponseCommandType, RealtimeRequestCommand, RealtimeResponseCommand } from './api';
+import type { AzureRealTimeAudioOptions, RealtimeRealtimeRequestCommandType, RealtimeRealtimeRequestItem, RealtimeRealtimeRequestResponseCreateCommand, RealtimeRealtimeResponseCommandType, RealtimeRequestCommand, RealtimeResponseCommand } from './api';
 import type { ModelStatusType } from './constants';
-import WebSocketClient from 'easy-websocket-client';
+import WebSocketClient, { singleton } from 'easy-websocket-client';
 import EventEmitter from 'eventemitter3';
 import { RealtimeRequestCommandEnum, RealtimeResponseCommandEnum } from './api';
 import { DEFAULT_SESSION_CONFIG, ModelStatusEnum } from './constants';
 
 /**
- * Configuration options for initializing the Azure Real-time Audio SDK client
- */
-interface AzureRealTimeAudioOptions {
-  /**
-   * Azure OpenAI service hostname (e.g., 'your-resource.openai.azure.com')
-   */
-  hostName: string;
-  /**
-   * API version string (e.g., '2024-10-01-preview')
-   */
-  apiVersion: string;
-  /**
-   * Model deployment name configured in Azure OpenAI
-   */
-  deployment: string;
-  /**
-   * API key for authentication with Azure OpenAI service
-   */
-  apiKey: string;
-  /**
-   * Optional session configuration to override defaults
-   */
-  sessionConfig?: RealtimeRealtimeRequestSessionUpdateCommand['session'];
-}
-
-/**
  * Azure Real-time Audio SDK client for OpenAI Realtime API
  * Provides WebSocket-based real-time audio communication with Azure OpenAI
  */
+@singleton
 export class AzureRealTimeAudio {
   #client: WebSocketClient;
   #eventEmitter = new EventEmitter<RealtimeRealtimeResponseCommandType>();
@@ -54,8 +29,9 @@ export class AzureRealTimeAudio {
       ...websocketOptions,
     }, WebSocketImpl);
 
-    const sessionConfig = options.sessionConfig ?? DEFAULT_SESSION_CONFIG;
+    this.#client.connect();
 
+    const sessionConfig = options.sessionConfig ?? DEFAULT_SESSION_CONFIG;
     this.#client.on('open', () => {
       this.send<RealtimeRequestCommandEnum.SESSION_UPDATE>({
         type: RealtimeRequestCommandEnum.SESSION_UPDATE,
@@ -83,16 +59,16 @@ export class AzureRealTimeAudio {
                 },
               );
             }
-            this.#status = ModelStatusEnum.LISTENING;
+            this.status = ModelStatusEnum.LISTENING;
             break;
 
           case RealtimeResponseCommandEnum.RESPONSE_CREATED:
-            this.#status = ModelStatusEnum.THINKING;
+            this.status = ModelStatusEnum.THINKING;
 
             break;
 
           case RealtimeResponseCommandEnum.RESPONSE_DONE:
-            this.#status = ModelStatusEnum.SPEAKING;
+            this.status = ModelStatusEnum.SPEAKING;
 
             break;
 
@@ -255,13 +231,17 @@ export class AzureRealTimeAudio {
    */
   set status(value: ModelStatusType) {
     this.#status = value;
+    this.#eventEmitter.emit(RealtimeResponseCommandEnum.STATUS_CHANGED, {
+      type: RealtimeResponseCommandEnum.STATUS_CHANGED,
+      status: value,
+    });
   }
 
   /**
    * Mark the model as finished speaking and set status back to idle
    */
   setModelSpeakDone() {
-    this.#status = ModelStatusEnum.IDLE;
+    this.status = ModelStatusEnum.IDLE;
   }
 
   /**

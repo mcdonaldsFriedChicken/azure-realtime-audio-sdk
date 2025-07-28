@@ -1,3 +1,4 @@
+import type { ModelStatusType } from '../constants';
 import type {
   RealtimeRealtimeRequestCommandType,
   RealtimeRealtimeRequestInputAudioBufferAppendCommand,
@@ -89,6 +90,10 @@ export enum RealtimeResponseCommandEnum {
    * Initial connection established - 初始连接建立
    */
   INIT = 'init',
+  /**
+   * Status changed - 状态改变
+   */
+  STATUS_CHANGED = 'status_changed',
   /**
    * Session created successfully - 会话成功创建
    */
@@ -199,11 +204,16 @@ export enum RealtimeResponseCommandEnum {
   ERROR = 'error',
 }
 
+interface RealtimeStatusChangedCommand {
+  type: RealtimeResponseCommandEnum.STATUS_CHANGED;
+  status: ModelStatusType;
+}
 /**
  * Type mapping interface for response commands
  */
 interface RealtimeResponseTypeMap {
   [RealtimeResponseCommandEnum.INIT]: RealtimeRealtimeResponseSessionUpdatedCommand;
+  [RealtimeResponseCommandEnum.STATUS_CHANGED]: RealtimeStatusChangedCommand;
   [RealtimeResponseCommandEnum.SESSION_CREATED]: RealtimeRealtimeResponseSessionCreatedCommand;
   [RealtimeResponseCommandEnum.SESSION_UPDATED]: RealtimeRealtimeResponseSessionUpdatedCommand;
   [RealtimeResponseCommandEnum.CONVERSATION_ITEM_CREATED]: RealtimeRealtimeResponseItemCreatedCommand;
@@ -261,3 +271,29 @@ interface RealtimeRequestTypeMap {
  */
 export type RealtimeRequestCommand<T extends RealtimeRealtimeRequestCommandType | RealtimeRequestCommandEnum>
   = T extends keyof RealtimeRequestTypeMap ? RealtimeRequestTypeMap[T] : never;
+
+/**
+ * Configuration options for initializing the Azure Real-time Audio SDK client
+ */
+export interface AzureRealTimeAudioOptions {
+  /**
+   * Azure OpenAI service hostname (e.g., 'your-resource.openai.azure.com')
+   */
+  hostName: string;
+  /**
+   * API version string (e.g., '2024-10-01-preview')
+   */
+  apiVersion: string;
+  /**
+   * Model deployment name configured in Azure OpenAI
+   */
+  deployment: string;
+  /**
+   * API key for authentication with Azure OpenAI service
+   */
+  apiKey: string;
+  /**
+   * Optional session configuration to override defaults
+   */
+  sessionConfig?: RealtimeRealtimeRequestSessionUpdateCommand['session'];
+}
